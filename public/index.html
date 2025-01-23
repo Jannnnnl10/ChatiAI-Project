@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <title>ChatiAI</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="sidebar">
+            <h1 class="web-title">ChatiAI</h1>
+            <p class="subtitle">Your virtual assistant for every problem</p>
+            <div id="refreshContainer">
+                <span id="refreshText">Refresh chat</span>
+                <button id="clearChatButton" title="Clear Chat"></button>
+            </div>
+        </div>
+
+        <div id="main">
+            <div class="container">
+                <h2 id="welcomeMessage">How can I help you today?</h2>
+            </div>
+
+            <div id="chatbox" style="display: none;">
+                <div id="chatlog"></div> 
+            </div>
+
+            <div id="chatbar">
+                <input type="text" id="userInput" placeholder="Chat with ChatiAI by sending a message">
+                <button id="submit" onclick="sendMessage()"></button> 
+            </div>
+            
+            <p id="disclaimer">ChatiAI can make mistakes. Make sure to verify important information</p>
+        </div>
+    </div>
+
+    
+    <script>
+        async function sendMessage() {
+            const userInput = document.getElementById("userInput").value.trim();
+    
+            if (userInput) {
+                document.getElementById("welcomeMessage").style.display = "none";
+                document.getElementById("chatbox").style.display = "block";
+                appendMessage('user', userInput);
+    
+                try {
+                    const response = await fetch('http://localhost:5000/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ message: userInput })
+                    });
+    
+                    const data = await response.json();
+                    if (data.error) {
+                        appendMessage('bot', "Error: " + data.error);
+                    } else {
+                        appendMessage('bot', data.response);
+                    }
+                } catch (error) {
+                    appendMessage('bot', 'Error communicating with server.');
+                }
+    
+                document.getElementById("userInput").value = '';
+            }
+        }
+    
+        function appendMessage(sender, message) {
+            const chatlog = document.getElementById("chatlog");
+            const newMessage = document.createElement("div");
+            newMessage.classList.add(sender);
+            newMessage.textContent = `${sender === 'user' ? 'You' : 'ChatiAI'}: ${message}`;
+            chatlog.appendChild(newMessage);
+            chatlog.scrollTop = chatlog.scrollHeight;
+        }
+    
+        document.getElementById("userInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                sendMessage();
+            }
+        });
+    
+        document.getElementById("clearChatButton").addEventListener("click", function () {
+            document.getElementById("chatlog").innerHTML = "";
+            document.getElementById("welcomeMessage").style.display = "block";
+            document.getElementById("chatbox").style.display = "none";
+        });
+    </script>
+    
+</body>
+</html>

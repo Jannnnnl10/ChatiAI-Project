@@ -1,0 +1,235 @@
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #F0F4FF;
+    color: #333333;
+}
+
+/* Wrapper */
+#wrapper {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar */
+#sidebar {
+    width: 300px;
+    background-color: #4A80C0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+    padding-top: 20px;
+    position: relative;
+    border-right: 3px solid #3868A2;
+}
+
+h1.web-title {
+    font-size: 28px;
+    margin: 0;
+    font-weight: bold;
+    color: white;
+}
+
+.subtitle {
+    font-size: 14px;
+    font-weight: 300;
+    color: #E6E6E6;
+    margin-top: 5px;
+    text-align: center;
+    font-style: italic;
+}
+
+#refreshContainer {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    bottom: 20px;
+    right: 50px;
+    margin-right:
+}
+
+#refreshText {
+    margin-right: 100px;
+    font-size: 14px;
+    color: white;
+}
+
+
+/* Button Styles */
+#clearChatButton {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-image: url('https://www.pinclipart.com/picdir/middle/138-1385075_clipart-chiffre-gratuit.png');
+    background-size: cover;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+#clearChatButton:hover {
+    opacity: 0.8;
+}
+
+
+/* Main Section */
+#main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    background-color: #DCE7F7; /* Soft gradient */
+}
+
+.container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    text-align: center;
+    margin: 0;
+    font-size: 30px;
+    color: #4A80C0;
+}
+
+#chatbox {
+    width: 700px;
+    height: 400px;
+    overflow-y: auto;
+    border: 2px solid #4A80C0;
+    background: linear-gradient(0deg, #ffffff, #ffffff);
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    display: none;
+    transition: all 0.3s ease;
+}
+
+#chatlog {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#chatlog .user {
+    align-self: flex-end;
+    background-color: #a7caff;
+    padding: 8px;
+    border-radius: 15px;
+    max-width: 60%;
+    color: #333333;
+}
+
+#chatlog .bot {
+    align-self: flex-start;
+    background-color: #a7caff;
+    padding: 8px;
+    border-radius: 15px;
+    max-width: 60%;
+    color: #333333;
+}
+
+/* Chatbar */
+#chatbar {
+    width: 700px;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #4A80C0; 
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#chatbar input {
+    flex-grow: 1;
+    height: 40px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    margin-right: 10px;
+    color: #333333;
+    background-color: #FFFFFF;
+}
+
+#chatbar input::placeholder {
+    color: #666666;
+}
+
+#submit {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background-image: url('https://e7.pngegg.com/pngimages/127/313/png-clipart-computer-icons-flickr-social-media-arrow-circle-angle-logo-thumbnail.png');
+    background-size: cover;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#submit:hover {
+    opacity: 0.9;
+}
+
+
+/* Disclaimer */
+#disclaimer {
+    font-size: 12px;
+    color: #333333;
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+    padding-bottom: 10px;
+    font-style: italic;
+}
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    #wrapper {
+        flex-direction: column;
+    }
+
+    #sidebar {
+        width: 100%;
+        text-align: center;
+    }
+
+    #main {
+        width: 100%;
+        padding: 20px;
+    }
+
+    #chatbox {
+        width: 90%;
+        height: 350px;
+    }
+
+    #chatbar {
+        flex-wrap: wrap;
+        padding: 10px;
+    }
+
+    #chatbar input {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #submit {
+        width: 45px;
+        height: 45px;
+    }
+}
